@@ -30,7 +30,7 @@ void loop() {
   // Xuat dinh dang JSON cho ca 3 kenh
   sprintf(chuoi, "{\"T1\":%d, \"T2\":%d, \"T3\":%d}\n", (int)nhietDo[0], (int)nhietDo[1], (int)nhietDo[2])
   
-
+//// Cap nhat cho Bai 6.
   Serial.print(chuoi);
   delay(100);
 }
