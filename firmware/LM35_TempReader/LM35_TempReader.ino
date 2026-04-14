@@ -1,28 +1,63 @@
+
+
+//khai bao bien toan cuc
+int adc[2];
+float Tam;
+byte NhietDo[2];
+char Chuoi[20];
+
 /*
- * Du an: Doc nhiet do LM35 va gui qua Serial
- * Mon: Mang Cam Bien - Tuan 03
- */
-
-int adcValues[2]; 
-float nhietDo[2]; 
-char chuoi[30];
-
-void setup() {
-  Serial.begin(9600);
+  SerialEvent occurs whenever a new data comes in the hardware serial RX. This
+  routine is run between each time loop() runs, so using delay inside loop can
+  delay response. Multiple bytes of data may be available.
+*/
+void serialEvent() 
+{
+  while (Serial.available()) 
+  {
+    // get the new byte:
+    char inChar = (char)Serial.read();
+  
+    // do something about it:
+    if (inChar != '\n')
+    {
+      
+    }
+  }
 }
 
-void loop() {
-  // Đọc kênh 1 (A0)
-  adcValues[0] = analogRead(A0);
-  nhietDo[0] = (adcValues[0] * 500.0) / 1023.0;
+void setup()
+{
+  // put your setup code here, to run once:
 
-  // Đọc kênh 2 (A1)
-  adcValues[1] = analogRead(A1);
-  nhietDo[1] = (adcValues[1] * 500.0) / 1023.0;
+  Serial.begin(9600); delay(100);
+  
+}
 
-  // Chuyển dữ liệu sang dạng CSV để gửi qua Serial
-  sprintf(chuoi, "%d,%d\n", (int)nhietDo[0], (int)nhietDo[1]);
-  Serial.print(chuoi);
+void loop()
+{
+  // put your main code here, to run repeatedly:
+  /*
+   * ta co: cu 1023[adc] thi tuong ung 5000mv
+   * vay  voi adc thi tuong ung bao nhieu a mv?  
+   * => a = (adc * 5000)/1023
+   * theo datasheet ta co:
+   * cu  10mv thi tuong ung 1 do C
+   * vay (adc * 5000)/1023 thi tuong ung b do C
+   * => b = (adc * 5000)/1023/10 = (adc*500)/1023
+   */
 
+  adc[0] = analogRead(A0);
+  Tam =  (adc[0]*500.0)/1023.0; 
+  NhietDo[0] = Tam;
+  
+  adc[1] = analogRead(A1);
+  Tam =  (adc[1]*500.0)/1023.0; 
+  NhietDo[1] = Tam;  
+  
+  sprintf(Chuoi,"%d,%d\n",NhietDo[0],NhietDo[1]);
+  Serial.print(Chuoi);
   delay(100);
+   
+
 }
