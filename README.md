@@ -16,18 +16,13 @@ Dự án theo dõi nhiệt độ sử dụng cảm biến LM35 và Arduino, hỗ
 
 
 
-\## Danh sách linh kiện
+## Danh sách linh kiện
 
 | Linh kiện | Số lượng | Cổng kết nối |
-
 | :--- | :---: | :--- |
-
 | Arduino Uno R3 | 01 | USB |
-
 | Cảm biến LM35 | 03 | A0, A1, A2 |
-
-| Breadboard \& Dây cắm | 01 | - |
-
+| Breadboard & Dây cắm | 01 | - |
 
 
 \## Cấu trúc thư mục
